@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Declarations</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+        }
+        .table-container {
+            max-width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Extending the base template -->
+    <div th:replace="~{fragments :: navbar}"></div>
+
+    <div class="content">
+        <h1 class="text-center">Your Declarations</h1>
+
+        <!-- Check if declarations are empty -->
+        <div th:if="${declarations.isEmpty()}">
+            <p>No declarations found.</p>
+        </div>
+
+        <!-- Table displaying declarations -->
+        <div th:unless="${declarations.isEmpty()}" class="table-container">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type of Declaration</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Declaration Date</th>
+                        <th scope="col">Payment Mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="declaration, iterStat : ${declarations}">
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${declaration.typeDeDeclaration.nom}"></td>
+                        <td th:text="${declaration.montant}"></td>
+                        <td th:text="${#dates.format(declaration.dateDeclaration, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${declaration.modePaiement.nom}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
