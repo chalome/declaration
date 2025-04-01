@@ -37,7 +37,12 @@ public class Declaration {
         this.modePaiement = modePaiement;
         this.utilisateur = utilisateur;
     }
-
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public TypeDeclaration getTypeDeDeclaration() {
         return typeDeDeclaration;
     }

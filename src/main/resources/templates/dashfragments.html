@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard Fragments</title>
+</head>
+<body>
+
+<!-- User Table Fragment -->
+<div th:fragment="users">
+    <h3>User List</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.nom}"></td>
+            <td th:text="${user.email}"></td>
+        </tr>
+    </table>
+</div>
+
+<!-- Declaration Table Fragment -->
+<div th:fragment="declarations">
+    <h3>Declarations List</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Client</th>
+            <th>Montant</th>
+            <th>Mode</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each="declaration : ${declarations}">
+            <td th:text="${declaration.id}"></td>
+            <td th:text="${declaration.utilisateur}"></td>
+            <td th:text="${declaration.montant}"></td>
+            <td th:text="${declaration.modePaiement}"></td>
+            <td th:text="${declaration.dateDeclaration}"></td>
+        </tr>
+    </table>
+</div>
+
+<div th:fragment="content">
+    <div th:if="${content == 'users'}" th:replace="~{dashfragments :: users}"></div>
+    <div th:if="${content == 'declarations'}" th:replace="~{dashfragments :: declarations}"></div>
+</div>
+
+
+</body>
+</html>

@@ -16,4 +16,7 @@ public class UtilisateurService {
     public Utilisateur findByPhoneNumber(String phoneNumber) {
         return loginRepository.findByNumeroTelephone(phoneNumber);
     }
+    public Iterable<Utilisateur> getAllUsers() {
+        return loginRepository.findAll();
+    }
 }

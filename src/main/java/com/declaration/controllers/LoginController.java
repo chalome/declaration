@@ -23,7 +23,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return "login";  // Return the login page view
+        return "login"; // Return the login page view
     }
 
     @PostMapping("/login")
@@ -40,7 +40,16 @@ public class LoginController {
         
         // Store the logged-in user in the session
         session.setAttribute("utilisateur", utilisateur);
-
-        return "redirect:/home"; // Redirect to home page after successful login
+    
+        // Redirect based on user category
+        if ("admin".equalsIgnoreCase(utilisateur.getCategory().toString())) {
+            return "redirect:/dashboard"; // Redirect to dashboard for admin
+        } else if ("client".equalsIgnoreCase(utilisateur.getCategory().toString())) {
+            return "redirect:/home"; // Redirect to home for client
+        }
+    
+        // Default fallback (optional)
+        model.addAttribute("error", "Unknown user category.");
+        return "login";
     }
 }
