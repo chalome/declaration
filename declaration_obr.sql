@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2025 at 02:44 PM
+-- Generation Time: Apr 03, 2025 at 05:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -53,16 +53,18 @@ CREATE TABLE `declaration` (
   `montant` double NOT NULL,
   `mode_paiement_id` int(11) DEFAULT NULL,
   `type_declaration_id` int(11) DEFAULT NULL,
-  `utilisateur_id` int(11) DEFAULT NULL
+  `utilisateur_id` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `declaration`
 --
 
-INSERT INTO `declaration` (`id`, `date_declaration`, `montant`, `mode_paiement_id`, `type_declaration_id`, `utilisateur_id`) VALUES
-(1, '2025-03-26 06:49:01.000000', 10000, 1, 1, 1),
-(2, '2025-04-01 06:33:54.000000', 40000, 2, 2, 1);
+INSERT INTO `declaration` (`id`, `date_declaration`, `montant`, `mode_paiement_id`, `type_declaration_id`, `utilisateur_id`, `description`) VALUES
+(1, '2025-03-26 06:49:01.000000', 10000, 1, 1, 1, NULL),
+(2, '2025-04-01 06:33:54.000000', 40000, 2, 2, 1, NULL),
+(3, '2025-04-03 14:00:40.000000', 40000, 1, 1, 1, 'To pay for the shop');
 
 -- --------------------------------------------------------
 
@@ -128,8 +130,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `adresse`, `date_creation`, `email`, `mot_de_passe`, `nif`, `nom`, `numero_telephone`, `prenom`, `category_id`) VALUES
-(1, 'mutanga', '2025-03-25 10:19:25.000000', 'jackin@gmail.com', 'jaja12345', '5000/483', 'mugisha', '78898989', 'jackin', 2),
-(2, 'kayanza', '2025-04-01 06:41:02.000000', 'dev@gmail.com', 'dev12345', '5000/48334', 'NIYUKURI', '78987665', 'dev', 1);
+(1, 'mutanga', '2025-03-25 10:19:25.000000', 'chalomizompansavye@gmail.com', 'jaja12345', '5000/483', 'mugisha', '78898989', 'jackin', 2),
+(2, 'kayanza', '2025-04-01 06:41:02.000000', 'chalomizompansavye@gmail.com', 'dev12345', '5000/48334', 'NIYUKURI', '78987665', 'dev', 1);
 
 --
 -- Indexes for dumped tables
@@ -183,7 +185,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `declaration`
 --
 ALTER TABLE `declaration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mode_paiement`
