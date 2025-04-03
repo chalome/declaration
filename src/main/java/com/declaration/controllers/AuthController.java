@@ -2,11 +2,13 @@ package com.declaration.controllers;
 
 import com.declaration.models.Utilisateur;
 import com.declaration.repositories.UtilisateurRepository;
+import com.declaration.services.UtilisateurService;
 import com.declaration.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
@@ -14,12 +16,17 @@ import java.util.Date;
 @Controller
 public class AuthController {
 
+    private final UtilisateurService userService;
+
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
     @Autowired
     private CategoryRepository categoryRepository; // Assuming you have a Category repository
-
+    
+   public AuthController(UtilisateurService userService) {
+        this.userService = userService;
+    }
     // Show registration form
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -44,5 +51,15 @@ public class AuthController {
         utilisateurRepository.save(utilisateur);
         
         return "redirect:/login";  // Redirect to login page after successful registration
+    }
+
+    @GetMapping("/user/details/{id}")
+    public String userDetailsPage(@PathVariable int id, Model model) {
+        Utilisateur user = userService.getUserById(id);
+        if (user == null) {
+            return "redirect:/home"; // Redirect if user not found
+        }
+        model.addAttribute("user", user);
+        return "user"; // Name of the Thymeleaf template
     }
 }

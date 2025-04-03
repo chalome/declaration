@@ -62,4 +62,13 @@ public class DeclarationController {
         model.addAttribute("declarations", declarationService.getAllDeclarations());
         return "declarations";  // Return to the page that lists the declarations
     }
+    @GetMapping("/declaration/details/{id}")
+    public String declarationDetailsPage(@PathVariable int id, Model model) {
+        Declaration declaration = declarationService.getDeclarationById(id);
+        if (declaration == null) {
+            return "redirect:/home"; // Redirect if declaration not found
+        }
+        model.addAttribute("declaration", declaration);
+        return "declaration_details"; // Name of the Thymeleaf template
+    }
 }

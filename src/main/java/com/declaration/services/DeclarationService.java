@@ -1,15 +1,16 @@
 package com.declaration.services;
 
 import com.declaration.models.Declaration;
-import com.declaration.models.Utilisateur;
 import com.declaration.repositories.DeclarationRepository;
+
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class DeclarationService {
-
+    
     private final DeclarationRepository declarationRepository;
 
     public DeclarationService(DeclarationRepository declarationRepository) {
@@ -25,9 +26,12 @@ public class DeclarationService {
     public List<Declaration> getAllDeclarations() {
         return declarationRepository.findAll();
     }
-
-    public List<Declaration> getDeclarationsForUser(Utilisateur utilisateur) {
-        // Fetch declarations for the given user
-        return declarationRepository.findByUtilisateur(utilisateur);
+    // Get a declaration by ID
+    public Declaration getDeclarationById(int id) {
+        return declarationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Declaration not found with id: " + id));
     }
+
+    
+
 }

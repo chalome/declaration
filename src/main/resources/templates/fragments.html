@@ -6,18 +6,26 @@
         /* Ensure the body and html take the full height of the viewport */
         html, body {
             height: 100%;
+            margin: 0;
         }
 
         /* Flexbox to ensure footer stays at the bottom */
         body {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
-        /* Optional: Add some padding to avoid footer sticking to the content */
+        /* Main content should grow to fill available space */
         .content {
-            flex-grow: 1;
+            flex: 1;
+            padding: 20px; /* Optional padding for better spacing */
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #343a40; /* Bootstrap dark background */
+            color: white;
+            position: relative; /* Ensure it stays within the flow of the document */
         }
     </style>
 </head>
@@ -32,13 +40,11 @@
                 <a class="nav-link text-white" href="/home">Acceuil</a>
                 <a class="nav-link text-white" href="/info">Information</a>
                 <a class="nav-link text-white" href="/about">À Propos</a>
+                <a th:if="${session.utilisateur != null}" th:href="@{/user/details/{id}(id=${session.utilisateur.id})}" class="nav-link text-white">Profile</a>
             </div>
             <div class="ms-auto">
-                <!-- Show Login and Register if user is not logged in -->
                 <a th:if="${session.utilisateur == null}" href="/login" class="btn btn-outline-light btn-sm">Login</a>
                 <a th:if="${session.utilisateur == null}" href="/register" class="btn btn-warning btn-sm">Register</a>
-                
-                <!-- Show Logout if user is logged in -->
                 <a th:if="${session.utilisateur != null}" href="/logout" class="btn btn-danger btn-sm">Logout</a>
             </div>
         </div>
@@ -53,7 +59,7 @@
 
 <!-- Footer Fragment -->
 <div th:fragment="footer">
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="text-center py-3">
         <p class="mb-0">&copy; 2025 OBR Online Declaration | All Rights Reserved</p>
     </footer>
 </div>

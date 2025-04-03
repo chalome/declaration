@@ -13,11 +13,15 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Details</th>
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.id}"></td>
             <td th:text="${user.nom}"></td>
             <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="@{/admin/user/details/{id}(id=${user.id})}">View Details</a>
+            </td>
         </tr>
     </table>
 </div>
@@ -32,6 +36,7 @@
             <th>Montant</th>
             <th>Mode</th>
             <th>Date</th>
+            <th>Details</th>
         </tr>
         <tr th:each="declaration : ${declarations}">
             <td th:text="${declaration.id}"></td>
@@ -39,6 +44,16 @@
             <td th:text="${declaration.montant}"></td>
             <td th:text="${declaration.modePaiement}"></td>
             <td th:text="${declaration.dateDeclaration}"></td>
+            <td>
+                <a th:href="@{/admin/declaration/details/{id}(id=${declaration.id})}">View Details</a>
+            </td>
+            <td>
+                <form th:action="@{/admin/declaration/send-email}" method="post" style="display:inline;">
+                    <input type="hidden" name="email" th:value="${declaration.utilisateur.email}" />
+                    <input type="hidden" name="declarationId" th:value="${declaration.id}" />
+                    <button type="submit" class="btn btn-info">Send Email</button>
+                </form>
+            </td>
         </tr>
     </table>
 </div>

@@ -46,6 +46,15 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Admin Dashboard</a>
         </div>
+        <!-- Flash Messages -->
+    <div>
+        <div th:if="${success}" class="alert alert-success" role="alert">
+            <span th:text="${success}"></span>
+        </div>
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+    </div>
     </nav>
 
     <!-- Dynamic Content (Thymeleaf Fragment) -->

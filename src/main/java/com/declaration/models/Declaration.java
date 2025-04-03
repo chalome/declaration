@@ -17,6 +17,7 @@ public class Declaration {
     private TypeDeclaration typeDeDeclaration;
     private double montant;
     private Date dateDeclaration;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "mode_paiement_id")
@@ -25,6 +26,7 @@ public class Declaration {
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
+
 
     public Declaration(){
         
@@ -37,11 +39,25 @@ public class Declaration {
         this.modePaiement = modePaiement;
         this.utilisateur = utilisateur;
     }
+    public Declaration(TypeDeclaration typeDeDeclaration, double montant, Date dateDeclaration, ModePaiement modePaiement, Utilisateur utilisateur,String description) {
+        this.typeDeDeclaration = typeDeDeclaration;
+        this.montant = montant;
+        this.dateDeclaration = dateDeclaration;
+        this.modePaiement = modePaiement;
+        this.utilisateur = utilisateur;
+        this.description = description;
+    }
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
     public TypeDeclaration getTypeDeDeclaration() {
         return typeDeDeclaration;

@@ -7,5 +7,6 @@ import com.declaration.models.Utilisateur;
 
 public interface LoginRepository extends JpaRepository<Utilisateur, Integer> {
     Utilisateur findByNumeroTelephone(String numeroTelephone);
+    Utilisateur findById(int id);
 }
 

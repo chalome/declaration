@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Declaration Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Fragment -->
+    <div th:replace="fragments :: navbar"></div>
+
+    <div class="container mt-5 content">
+        <h1 class="text-center fw-bold mb-4">Declaration Details</h1>
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Declaration Information</h5>
+                <table class="table table-bordered mt-3">
+                    <tbody>
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td th:text="${declaration.id}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Type of Declaration</th>
+                            <td th:text="${declaration.typeDeDeclaration.nom}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Amount</th>
+                            <td th:text="${declaration.montant}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Date of Declaration</th>
+                            <td th:text="${#dates.format(declaration.dateDeclaration, 'dd/MM/yyyy')}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td th:text="${declaration.description}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Payment Mode</th>
+                            <td th:text="${declaration.modePaiement.nom}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">User</th>
+                            <td th:text="${declaration.utilisateur.nom}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center mt-4">
+                    <a th:href="@{/declarations/edit/{id}(id=${declaration.id})}" class="btn btn-warning">Edit</a>
+                    <a th:href="@{/admin/declarations}" class="btn btn-secondary">Back to List</a>
+                
+                    {% comment %} <a th:href="@{${session.utilisateur.category.nom == 'Admin' ? '/admin/declarations' : '/declarations/list'}}" class="btn btn-secondary">Back to List</a> {% endcomment %}
+                
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Fragment -->
+    <div th:replace="fragments :: footer"></div>
+</body>
+</html>

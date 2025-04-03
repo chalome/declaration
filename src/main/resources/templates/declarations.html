@@ -23,7 +23,7 @@
 <body>
 
     <!-- Extending the base template -->
-    <div th:replace="~{fragments :: navbar}"></div>
+    <div th:replace="~{fragments :: navbar}" ></div>
 
     <div class="content">
         <h1 class="text-center">Your Declarations</h1>
@@ -43,6 +43,7 @@
                         <th scope="col">Amount</th>
                         <th scope="col">Declaration Date</th>
                         <th scope="col">Payment Mode</th>
+                        <th scope="col">Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +53,9 @@
                         <td th:text="${declaration.montant}"></td>
                         <td th:text="${#dates.format(declaration.dateDeclaration, 'yyyy-MM-dd')}"></td>
                         <td th:text="${declaration.modePaiement.nom}"></td>
+                        <td>
+                            <a th:href="@{/declarations/declaration/details/{id}(id=${declaration.id})}">View Details</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
