@@ -28,6 +28,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
         <div class="container">
             <a class="navbar-brand fw-bold" href="/">OBR Declaration</a>
+            <div class="navbar-nav">
+                <a class="nav-link text-white" href="/home">Acceuil</a>
+                <a class="nav-link text-white" href="/info">Information</a>
+                <a class="nav-link text-white" href="/about">À Propos</a>
+            </div>
             <div class="ms-auto">
                 <!-- Show Login and Register if user is not logged in -->
                 <a th:if="${session.utilisateur == null}" href="/login" class="btn btn-outline-light btn-sm">Login</a>

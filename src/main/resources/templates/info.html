@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>OBR - Declaration Steps</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Fragment -->
+    <div th:replace="fragments :: navbar"></div>
+
+    <div class="container text-center mt-5 content">
+        <h1 class="fw-bold">Steps for Declaration</h1>
+        <p class="lead">Follow these simple steps to complete your tax declaration:</p>
+        <div class="text-start mt-4">
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">
+                    <strong>Step 1: Authentication</strong> - Log in to your account. If you don't have an account, register to create one.
+                </li>
+                <li class="list-group-item">
+                    <strong>Step 2: Fill Out the Declaration</strong> - Use the app to provide all the necessary details for your tax declaration.
+                </li>
+                <li class="list-group-item">
+                    <strong>Step 3: Submit for Approval</strong> - Once completed, submit your declaration. The admin will review and approve it.
+                </li>
+                <li class="list-group-item">
+                    <strong>Step 4: Receive Confirmation</strong> - After approval, you will receive an email confirmation from the admin.
+                </li>
+            </ol>
+        </div>
+        <p class="mt-4">Our platform ensures a secure and efficient process for your tax declarations.</p>
+        <a th:href="@{/declarations/create}" class="btn btn-primary btn-lg">Start Your Declaration</a>
+    </div>
+
+    <!-- Footer Fragment -->
+    <div th:replace="fragments :: footer"></div>
+</body>
+</html>

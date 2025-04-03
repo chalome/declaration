@@ -43,7 +43,7 @@ public class LoginController {
     
         // Redirect based on user category
         if ("admin".equalsIgnoreCase(utilisateur.getCategory().toString())) {
-            return "redirect:/dashboard"; // Redirect to dashboard for admin
+            return "redirect:/admin/users"; // Redirect to dashboard for admin
         } else if ("client".equalsIgnoreCase(utilisateur.getCategory().toString())) {
             return "redirect:/home"; // Redirect to home for client
         }
